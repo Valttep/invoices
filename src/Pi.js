@@ -12,13 +12,12 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { bundle, temp } from './App.js';
 import { Line } from './Line.js';
+import TheInvoice from './TheInvoice.js';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 
-let lines = [];
-let row = [];
+let r = [];
 let index = 0;
-let i = 0;
-
-let block = "";
 
 
 class Pi extends Component {
@@ -33,6 +32,7 @@ class Pi extends Component {
         vat: "",
         total: "",
         rows: [],
+        open: false,
       }
   }
 
@@ -47,7 +47,7 @@ class Pi extends Component {
     console.log(this.state.selected.length + " pituus " + this.state.selected + " sisältö");
   };
 
-  updateField = (part, data) =>{
+  updateField = (part, data) => {
     this.setState({
       prodName: part===0?data:this.state.prodName,
       quantity: part===1?data:this.state.quantity,
@@ -57,7 +57,7 @@ class Pi extends Component {
   }
 
   addButton = () => {
-    let r = this.state.rows;
+    r = this.state.rows;
     r[index] = new Line(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
     console.log(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
     console.log(r[index]);
@@ -79,7 +79,29 @@ class Pi extends Component {
   }
 
 
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
   render() {
+
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        disabled={true}
+        onClick={this.handleClose}
+      />,
+    ];
 
     const styling = {
       fontSize: temp,
@@ -119,8 +141,19 @@ class Pi extends Component {
 
         </TableBody>
       </Table>
+      <div>
+        <Dialog
+          title="Dialog With Actions"
+          actions={actions}
+          modal={true}
+          open={this.state.open}
+        >
+          <TheInvoice />
+        </Dialog>
+      </div>
 
       <RaisedButton labelStyle={{fontSize: temp}} label={bundle.del} primary={false} onTouchTap={this.deleteSelected} disabled={this.state.selected.length <= 0} />
+      <RaisedButton labelStyle={{fontSize: temp}} label={bundle.openI} primary={false} onTouchTap={this.handleOpen} />
       </div>
     );
   }

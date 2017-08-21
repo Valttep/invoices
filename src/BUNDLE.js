@@ -1,5 +1,6 @@
 const BUNDLE = {
   en: {
+    invoice: "Invoice",
     isoft: "Invoice Software",
     logOut: "Log Out",
     language: "Change Language To: FI",
@@ -45,6 +46,7 @@ const BUNDLE = {
     total: "In Total",
   },
   fi: {
+    invoice: "Lasku",
     isoft: "Laskutusohjelma",
     logOut: "Kirjaudu Ulos",
     language: "Change Language To: EN",
