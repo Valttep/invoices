@@ -16,7 +16,7 @@ import TheInvoice from './TheInvoice.js';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
-let r = [];
+export let r = [];
 let index = 0;
 
 
@@ -76,8 +76,8 @@ class Pi extends Component {
     this.setState({
       rows: tempRow,
     });
+    r = tempRow;
   }
-
 
   handleOpen = () => {
     this.setState({open: true});

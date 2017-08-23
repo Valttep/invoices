@@ -3,15 +3,53 @@ import React, {Component} from 'react';
 import {cust} from './Ci.js';
 import {invoiceInformation} from './Ii.js';
 import {r} from './Pi.js';
-import {bundle} from './App.js'
+import {bundle, temp} from './App.js'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+
+
 
 class TheInvoice extends Component {
+  constructor(){
+    super()
+    this.state = {
+      rows: r,
+    }
+  }
+
+  tulostaTuote = () =>{
+    var tuoteTiedot = "";
+    var el = document.createElement("tr");
+    for(var key in r[r.length]){
+        tuoteTiedot = r[r.length][key];
+        var solu = document.createElement("td");
+        var teksti = document.createTextNode(tuoteTiedot);
+        solu.appendChild(teksti);
+        el.appendChild(solu);
+    }
+
+    var a = this.refs.tt;
+    a.appendChild(el);
+    console.log("Hello");
+
+  }
+
   render() {
+
+    const styling = {
+      fontSize: temp,
+    }
 
     let tableStyle = {
       borderWidth: 1,
       borderColor: 'black',
-      borderStyle: 'solid'
+      borderStyle: 'solid',
     };
 
     function correctDate() {
@@ -27,13 +65,30 @@ class TheInvoice extends Component {
       if (mm < 10) {
         mm = '0' + mm
       }
+      console.log("Time");
+      return today = dd + '.' + mm + '.' + yyyy;
+    }
 
-      return today = dd + '.' + mm + '.' + yyyy;;
+    function tulostaTuote(){
+      var tuoteTiedot = "";
+      var el = document.createElement("tr");
+      for(var key in r[r.length]){
+          tuoteTiedot = r[r.length][key];
+          var solu = document.createElement("td");
+          var teksti = document.createTextNode(tuoteTiedot);
+          solu.appendChild(teksti);
+          el.appendChild(solu);
+      }
+
+      return el;
+      console.log("helloRuby");
+
+
     }
 
     return (
       <div>
-        <table style={tableStyle} width="100%">
+        <table style={tableStyle} width="100%" onLoad={this.tulostaTuote}>
           <tr>
             <td colSpan='2'>
               {bundle.i}
@@ -48,7 +103,7 @@ class TheInvoice extends Component {
               <br/>
             </td>
             <td width='30%'>
-              laskutiedot
+              {bundle.ii}
               <table id = 'laskuTaulu' cellSpacing = '0'>
                 <tr>
                   <td style={tableStyle}>
@@ -84,17 +139,17 @@ class TheInvoice extends Component {
                   </tr>
                   <tr>
                     <td colSpan='2' style={tableStyle}>
-                          maksuehdot
+                      {bundle.top}
                     </td>
                   </tr>
                   <tr>
                     <td id='huomautusA' style={tableStyle}>
                       {invoiceInformation.top}
-                      <br/>
+                      <br />
                     </td>
                     <td id='viivastysK' style={tableStyle}>
                       {invoiceInformation.pen}
-                      < br/>
+                      <br />
                     </td>
                   </tr>
                 </table>
@@ -102,20 +157,33 @@ class TheInvoice extends Component {
             </tr>
             <tr>
               <td colSpan='2'>
-                tuotteet
+                {bundle.product}
                 <hr/>
-                <table id='tuoteTaulu' width='100%'>
-                <tr id='tuoteRivi'>
-                  <td id='nimi' width='40%'>Nimi</td>
-                  <td id='hinta'>
-                    Hinta
-                  </td>
-                  <td id='tuoteMaara'>Määrä</td>
-                  <td id='tuoteAlv'>Alv-%</td>
-                  <td id='tuoteAlv'>hinta ilman Alv</td>
-                  <td id='yht'>Yhteensä</td>
-                </tr>
-              </table>
+                <Table selectable={false} multiSelectable={false} style={styling}>
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                  <TableRow>
+                    <TableHeaderColumn style={styling}>{bundle.tablepname}</TableHeaderColumn>
+                    <TableHeaderColumn style={styling}>{bundle.quantity}</TableHeaderColumn>
+                    <TableHeaderColumn style={styling}>{bundle.price}</TableHeaderColumn>
+                    <TableHeaderColumn style={styling}>{bundle.vat} %</TableHeaderColumn>
+                    <TableHeaderColumn style={styling}>{bundle.total}</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody selectable={false} multiSelectable={false} displaySelectAll={false} adjustForCheckbox={false} displayRowCheckbox={false}>
+
+                  {this.state.rows.map((row, i)=>(
+                    <TableRow key={i}>
+                      <TableRowColumn>{row.product}</TableRowColumn>
+                      <TableRowColumn>{row.q}</TableRowColumn>
+                      <TableRowColumn>{row.p}</TableRowColumn>
+                      <TableRowColumn>{row.vat}</TableRowColumn>
+                      <TableRowColumn>{row.total}</TableRowColumn>
+                    </TableRow>
+                  ))}
+
+
+                </TableBody>
+              </Table>
             </td>
           </tr>
           <tr>

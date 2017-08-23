@@ -40,6 +40,7 @@ const BUNDLE = {
     add: "Add",
     tablepname: "Name",
     total: "In Total",
+    product: "Product",
     //navigation
     next: "Next",
     finish: "Finish",
@@ -95,6 +96,7 @@ const BUNDLE = {
     add: "Lisää",
     tablepname: "Nimi",
     total: "Yhteensä",
+    product: "Tuotteet",
     //navigation
     next: "Seuraava",
     finish: "Lopeta",
