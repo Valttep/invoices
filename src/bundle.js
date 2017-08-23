@@ -4,7 +4,6 @@ const BUNDLE = {
     title: "INVOICE SOFTWARE",
     lOut: "Log Out",
     language: "Change Language To: FI",
-    userInfo: "User Information",
     uiSets: "UI Settings",
     settings: "Settings",
     //Menu
@@ -14,6 +13,8 @@ const BUNDLE = {
     editC: "Edit Customers",
     //User Information
     userInfo: "Your Information",
+    iban: "Account Number IBAN",
+    bic: "BIC",
     //customer Information
     ci: "Customer Information",
     name: "Name",
@@ -33,6 +34,9 @@ const BUNDLE = {
     ref: "Reference Number",
     top: "Terms of Payment",
     pen: "Penalty Interest",
+    //invoice text
+    sender: "Sender: ",
+    receiver: "Payer name and address: ",
     //Product Information
     pi: "Product Information",
     pName: "Product Name",
@@ -53,6 +57,8 @@ const BUNDLE = {
     addIi: "Add Invoice Information",
     openI: "Open invoice to new window",
     saveI: "Save Your Information",
+    alert: "Fill all the fields.",
+    alert2: "Check the fields.",
     //SettingsDialog
     settingTitle: "UI Settings",
     uiColor: "Change UI Color:",
@@ -63,7 +69,6 @@ const BUNDLE = {
     title: "LASKUTUSOHJELMA",
     lOut: "Kirjaudu Ulos",
     language: "Vaihda kieleksi: EN",
-    userInfo: "Käyttäjätiedot",
     uiSets: "KäLi asetukset",
     settings: "Asetukset",
     //Menu
@@ -73,6 +78,8 @@ const BUNDLE = {
     editC: "Muokkaa Asiakkaita",
     //User Information
     userInfo: "Your Information",
+    iban: "Tilinumero IBAN",
+    bic: "BIC",
     //customer Information
     ci: "Asiakastiedot",
     name: "Nimi",
@@ -92,6 +99,9 @@ const BUNDLE = {
     ref: "Viitenumero",
     top: "Maksuehdot",
     pen: "Viivästyskorko",
+    //invoice text
+    sender: "Lähettäjä: ",
+    receiver: "Maksajan nimi ja osoite: ",
     //Product Information
     pi: "Tuotetiedot",
     pName: "Tuoteen nimi",
@@ -112,6 +122,8 @@ const BUNDLE = {
     addIi: "Lisää Tiedot",
     openI: "Avaa lasku uuteen ikkunaan",
     saveI: "Save Your Information",
+    alert: "Et antanut kaikkia arvoja.",
+    alert2: "Tarkista kentät.",
     //SettingsDialog
     settingTitle: "KäLi Asetukset",
     uiColor: "Vaihda käyttöliittymän väriä:",

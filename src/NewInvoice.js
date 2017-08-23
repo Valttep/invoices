@@ -1,9 +1,9 @@
 //class for New invoices
 import React, { Component } from 'react';
-import Ci from './Ci.js';
-import Ii from './Ii.js';
-import Pi from './Pi.js';
-import Oi from './Oi.js';
+import Ci,  { eOk3 } from './Ci.js';
+import Ii, { eOk2 } from './Ii.js';
+import Pi, { eOk4 } from './Pi.js';
+import Oi, { everythingOk } from './Oi.js';
 import './App.css';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
@@ -16,6 +16,7 @@ import {
 import { bundle, temp} from './App.js';
 
 
+export let ok = false;
 const containerStyle = {
    width: '80%',
 }
@@ -39,10 +40,15 @@ class NewInvoice extends Component {
 
    handleNext = () => {
      const {stepIndex} = this.state;
-     this.setState({
-       stepIndex: stepIndex + 1,
-       finished: stepIndex >= 3,
-     });
+     let ok = everythingOk + eOk2 + eOk3 + eOk4;
+     if(ok == this.state.stepIndex + 1){
+       this.setState({
+         stepIndex: stepIndex + 1,
+         finished: stepIndex >= 3,
+       });
+     } else {
+      alert(bundle.alert2);
+     }
    };
 
    handlePrev = () => {

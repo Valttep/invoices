@@ -5,12 +5,13 @@ import { bundle, temp } from './App.js';
 import { OwnInfo } from './OwnInfo.js';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 export let oInfo;
+export let everythingOk = 0;
+let probs = 0;
 
 class Oi extends Component {
 
-   constructor() {
+    constructor() {
       super();
       this.state = {
         name: "",
@@ -21,6 +22,8 @@ class Oi extends Component {
         bId: "",
         phone: "",
         email: "",
+        iban: "",
+        bic: "",
       }
    }
 
@@ -32,22 +35,40 @@ class Oi extends Component {
        city: part===3?data:this.state.city,
        country: part===4?data:this.state.country,
        bId: part===5?data:this.state.bId,
-       phone: part===6?data:this.state.phone,
-       email: part===7?data:this.state.email,
+       iban: part===6?data:this.state.iban,
+       bic: part===7?data:this.state.bic,
+       phone: part===8?data:this.state.phone,
+       email: part===9?data:this.state.email,
      });
    }
 
    addInfo = () => {
-     oInfo = new OwnInfo(this.state.name,
-       this.state.address,
-       this.state.zip,
-       this.state.city,
-       this.state.country,
-       this.state.bId,
-       this.state.phone,
-       this.state.email
-     );
-     console.log(oInfo);
+     probs = 0;
+     for(var k in this.state){
+       if(this.state[k] === null || this.state[k] === ""){
+         probs++;
+       }
+     }
+
+     if(probs === 0){
+       oInfo = new OwnInfo(
+         this.state.name,
+         this.state.address,
+         this.state.zip,
+         this.state.city,
+         this.state.country,
+         this.state.bId,
+         this.state.phone,
+         this.state.email,
+         this.state.iban,
+         this.state.bic,
+       );
+       everythingOk = 1;
+       console.log(oInfo);
+       console.log(everythingOk);
+     } else {
+       alert(bundle.alert);
+     }
    }
 
   render() {
@@ -67,8 +88,10 @@ class Oi extends Component {
         <TextField style={pads} floatingLabelText={bundle.city} value={this.state.city} onChange={(e, v) => {this.updateField(3, v);}} hintText="ex. Tampere" />
         <TextField style={pads} floatingLabelText={bundle.country} value={this.state.country} onChange={(e, v) => {this.updateField(4, v);}} hintText="" />
         <TextField style={pads} floatingLabelText={bundle.bId} value={this.state.bId} onChange={(e, v) => {this.updateField(5, v);}} hintText="ex. Y-code" />
-        <TextField style={pads} floatingLabelText={bundle.phone} value={this.state.phone} onChange={(e, v) => {this.updateField(6, v);}} hintText="" />
-        <TextField style={pads} floatingLabelText={bundle.email} value={this.state.email} onChange={(e, v) => {this.updateField(7, v);}} hintText="xx@company.fi" />
+        <TextField style={pads} floatingLabelText={bundle.iban} value={this.state.iban} onChange={(e, v) => {this.updateField(6, v);}} hintText="FI12 1233 580..." />
+        <TextField style={pads} floatingLabelText={bundle.bic} value={this.state.bic} onChange={(e, v) => {this.updateField(7, v);}} hintText="" />
+        <TextField style={pads} floatingLabelText={bundle.phone} value={this.state.phone} onChange={(e, v) => {this.updateField(8, v);}} hintText="" />
+        <TextField style={pads} floatingLabelText={bundle.email} value={this.state.email} onChange={(e, v) => {this.updateField(9, v);}} hintText="xx@company.fi" />
         <br/>
         <RaisedButton labelStyle={{fontSize: temp}} label={bundle.saveI} primary={true} onTouchTap={this.addInfo} />
       </div>

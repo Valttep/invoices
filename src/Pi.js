@@ -17,8 +17,15 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 
 export let r = [];
+export let eOk4 = 0;
 let index = 0;
 
+
+const dialogStyle = {
+  width: '100%',
+  height: '100%',
+  maxWidth: 'none',
+};
 
 class Pi extends Component {
 
@@ -70,16 +77,23 @@ class Pi extends Component {
   deleteSelected = () => {
     let tempRow = this.state.rows;
     let tempSel = this.state.selected;
-    for(var i = 0; i < tempSel.length; i++){
+    console.log("ennen rows " + this.state.rows.length + " ennen tempsel " + tempSel[0] + " " + tempSel.length + " ennen index " + index + "   " + this.state.selected);
+    for(var i in tempSel){
       tempRow.splice(tempSel[i], 1);
+      console.log(tempRow.splice(tempSel[i], 1));
+      if(index > 0)
+        index--;
     }
     this.setState({
+      selected: [],
       rows: tempRow,
     });
-    r = tempRow;
+    console.log(this.state.rows.length + " " + tempSel[0] + " " + tempSel.length + " " + index);
+    r = tempRow
   }
 
   handleOpen = () => {
+    eOk4 = 1;
     this.setState({open: true});
   };
 
@@ -143,10 +157,12 @@ class Pi extends Component {
       </Table>
       <div>
         <Dialog
-          title="Dialog With Actions"
+          title=""
           actions={actions}
           modal={true}
+          contentStyle={dialogStyle}
           open={this.state.open}
+          autoScrollBodyContent={true}
         >
           <TheInvoice />
         </Dialog>

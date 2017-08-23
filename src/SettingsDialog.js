@@ -47,12 +47,17 @@ class SettingsDialog extends Component{
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          {bundle.uiColor}
+          <div>
+          <p>
+          {bundle.uiColor}<br />
           <img src="blue.png" alt="blue" onTouchTap={() => {this.uiColor('#3F48CC');}} />
           <img src="default.png" alt="green, default" onTouchTap={() => {this.uiColor('#25BC8A');}} />
           <img src="red.png" alt="red" onTouchTap={() => {this.uiColor('#88001B');}} />
+          </p>
+          <br />
+          <p style={{Align:'middle'}}>
           {bundle.uiFont}
-          <div style={{padding: 5, display: 'inline-block'}}>
+          <div style={{padding: 5,}}>
             <RadioButtonGroup name="size" defaultChecked={this.state.fSize} onChange={this.setSize}>
               <RadioButton value="12" label="12 points" />
               <RadioButton value="15" label="15 points" />
@@ -62,7 +67,8 @@ class SettingsDialog extends Component{
 
 
           </div>
-
+        </p>
+      </div>
         </Dialog>
     );
   }

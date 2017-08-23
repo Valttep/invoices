@@ -5,11 +5,10 @@ import { bundle, temp } from './App.js';
 import { Customer } from './Customer.js';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const fls = {
-  color: 'black',
-}
 
 export let cust;
+export let eOk3 = 0;
+let probs = 0;
 
 class Ci extends Component {
 
@@ -42,19 +41,32 @@ class Ci extends Component {
      });
    }
 
-   createCustomer = () => {
-     cust = new Customer(this.state.name,
-       this.state.cNro,
-       this.state.address,
-       this.state.zip,
-       this.state.city,
-       this.state.country,
-       this.state.bId,
-       this.state.phone,
-       this.state.email
-     );
-     console.log(cust);
-   }
+  createCustomer = () => {
+    probs = 0;
+    for(var k in this.state){
+      if(this.state[k] === null || this.state[k] === ""){
+        probs++;
+      }
+    }
+
+    if(probs === 0){
+      cust = new Customer(this.state.name,
+        this.state.cNro,
+        this.state.address,
+        this.state.zip,
+        this.state.city,
+        this.state.country,
+        this.state.bId,
+        this.state.phone,
+        this.state.email
+      );
+      eOk3 = 1;
+      console.log(cust);
+    } else {
+      alert(bundle.alert);
+    }
+
+  }
 
   render() {
 
@@ -67,7 +79,7 @@ class Ci extends Component {
     return (
       <div className="Ci" style={pads}>
         <p> {bundle.ci} </p>
-        <TextField style={pads} floatingLabelText={bundle.name} value={this.state.name} onChange={(e, v) => {this.updateField(0, v);}} hintText="ex. Gravel Company" floatingLabelStyle={fls} />
+        <TextField style={pads} floatingLabelText={bundle.name} value={this.state.name} onChange={(e, v) => {this.updateField(0, v);}} hintText="ex. Gravel Company" />
         <TextField style={pads} floatingLabelText={bundle.cNro} value={this.state.cNro} onChange={(e, v) => {this.updateField(1, v);}}/>
         <TextField style={pads} floatingLabelText={bundle.address} value={this.state.address} onChange={(e, v) => {this.updateField(2, v);}} hintText="Kalevantie 4" />
         <TextField style={pads} floatingLabelText={bundle.zip} value={this.state.zip} onChange={(e, v) => {this.updateField(3, v);}} hintText="ex. 04401" />

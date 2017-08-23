@@ -14,7 +14,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-
+let inTotal = 0;
 
 class TheInvoice extends Component {
   constructor(){
@@ -43,7 +43,7 @@ class TheInvoice extends Component {
     function correctDate() {
       var today = new Date();
       var dd = today.getDate();
-      var mm = today.getMonth() + 1; //January is 0!
+      var mm = today.getMonth() + 1;
       var yyyy = today.getFullYear();
 
       if (dd < 10) {
@@ -53,19 +53,28 @@ class TheInvoice extends Component {
       if (mm < 10) {
         mm = '0' + mm
       }
-      console.log("Time");
       return today = dd + '.' + mm + '.' + yyyy;
+    }
+
+    function inTotalCalc(){
+      inTotal = 0;
+      for(var k in r){
+        inTotal +=r[k].total
+      }
+      return inTotal;
     }
 
     return (
       <div>
-        <table style={tableStyle} width="100%" onLoad={this.tulostaTuote}>
+        <button type="submit" onClick={() => {window.print();}}>Print this page</button>
+        <table style={tableStyle} width="100%">
           <tr>
             <td colSpan='2'>
               {bundle.i}
               <p style={senderStyle}>
-                {oInfo.name}, {oInfo.address}, {oInfo.zip} {oInfo.city}
-                {oInfo.bId}, {oInfo.name}, {oInfo.city}
+                {oInfo.name}, {oInfo.address},<br />
+                {oInfo.zip} {oInfo.city} <br />
+                {oInfo.email}, {oInfo.phone}
               </p>
             </td>
           </tr>
@@ -84,22 +93,22 @@ class TheInvoice extends Component {
                     {correctDate()}
                   </td>
                   <td id='laskuNro' style={tableStyle}>
-                    {invoiceInformation.iNro}
+                    {bundle.iNro}: {invoiceInformation.iNro}
                     <br/>
                   </td>
                 </tr>
                 <tr>
                 <td id='aNro' style={tableStyle}>
-                  {cust.cNro}
+                  {bundle.cNro}: {cust.cNro}
                   <br/>
                 </td>
                 <td style={tableStyle}>
-                  {invoiceInformation.ref}
+                  {bundle.ref}: {invoiceInformation.ref}
                 </td>
                 </tr>
                 <tr>
                   <td id='aYtun' style={tableStyle}>
-                    {cust.bId}
+                    {bundle.bId}: {cust.bId}
                     <br/>
                   </td>
                   <td style={tableStyle}>
@@ -162,7 +171,36 @@ class TheInvoice extends Component {
           </tr>
           <tr>
             <td colSpan='2' id='lahettajaInfo'>
-              tiedot
+              <table style={tableStyle} width="100%">
+                <tr>
+                  <td style={tableStyle}>
+                    IBAN: {oInfo.iban}
+                  </td>
+                  <td style={tableStyle}>
+                    BIC: {oInfo.bic}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={tableStyle}>
+                    {bundle.sender}{oInfo.name}
+                  </td>
+                  <td style={tableStyle}>
+                    {bundle.ref}: {invoiceInformation.ref}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={tableStyle}>
+                    {bundle.receiver} <br />
+                    {cust.name} <br />
+                    {cust.address} <br />
+                    {cust.zip} {cust.city}
+                  </td>
+
+                  <td style={tableStyle} >
+                    {bundle.dd}: {invoiceInformation.dd} {bundle.total}: {inTotalCalc()} €
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
         </table>

@@ -9,6 +9,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 export let invoiceInformation;
 
+export let eOk2 = 0;
+let probs = 0;
+
 class Ii extends Component {
 
    constructor() {
@@ -32,7 +35,14 @@ class Ii extends Component {
      });
    }
 
-   createIi = () => {
+  createIi = () => {
+     probs = 0;
+     for(var k in this.state){
+       if(this.state[k] === null || this.state[k] === ""){
+         probs++;
+       }
+     }
+     if(probs === 0){
      invoiceInformation = new InvoiceInfo(
        this.state.iNro,
        this.state.dd,
@@ -40,9 +50,13 @@ class Ii extends Component {
        this.state.top,
        this.state.pen
      );
-
      console.log(invoiceInformation);
+     eOk2 = 1;
+   } else {
+     alert(bundle.alert2);
    }
+
+  }
 
   render() {
 

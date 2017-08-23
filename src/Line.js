@@ -4,7 +4,7 @@ export class Line {
     this.q = q;
     this.p = p;
     this.vat = vat;
-    this.total = parseFloat(q*p*(vat/100));
+    this.total = parseFloat(q*p*(1+(vat/100)));
   }
 }
 
