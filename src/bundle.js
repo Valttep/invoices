@@ -12,6 +12,8 @@ const BUNDLE = {
     createC: "Create a Customer",
     browse: "Browse Invoices",
     editC: "Edit Customers",
+    //User Information
+    userInfo: "Your Information",
     //customer Information
     ci: "Customer Information",
     name: "Name",
@@ -50,6 +52,7 @@ const BUNDLE = {
     addC: "Add Customer",
     addIi: "Add Invoice Information",
     openI: "Open invoice to new window",
+    saveI: "Save Your Information",
     //SettingsDialog
     settingTitle: "UI Settings",
     uiColor: "Change UI Color:",
@@ -68,6 +71,8 @@ const BUNDLE = {
     createC: "Luo Asiakas",
     browse: "Selaa Laskuja",
     editC: "Muokkaa Asiakkaita",
+    //User Information
+    userInfo: "Your Information",
     //customer Information
     ci: "Asiakastiedot",
     name: "Nimi",
@@ -106,6 +111,7 @@ const BUNDLE = {
     addC: "Lisää Asiakas",
     addIi: "Lisää Tiedot",
     openI: "Avaa lasku uuteen ikkunaan",
+    saveI: "Save Your Information",
     //SettingsDialog
     settingTitle: "KäLi Asetukset",
     uiColor: "Vaihda käyttöliittymän väriä:",

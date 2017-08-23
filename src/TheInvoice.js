@@ -4,6 +4,7 @@ import {cust} from './Ci.js';
 import {invoiceInformation} from './Ii.js';
 import {r} from './Pi.js';
 import {bundle, temp} from './App.js'
+import { oInfo } from './Oi.js';
 import {
   Table,
   TableBody,
@@ -23,23 +24,6 @@ class TheInvoice extends Component {
     }
   }
 
-  tulostaTuote = () =>{
-    var tuoteTiedot = "";
-    var el = document.createElement("tr");
-    for(var key in r[r.length]){
-        tuoteTiedot = r[r.length][key];
-        var solu = document.createElement("td");
-        var teksti = document.createTextNode(tuoteTiedot);
-        solu.appendChild(teksti);
-        el.appendChild(solu);
-    }
-
-    var a = this.refs.tt;
-    a.appendChild(el);
-    console.log("Hello");
-
-  }
-
   render() {
 
     const styling = {
@@ -50,6 +34,10 @@ class TheInvoice extends Component {
       borderWidth: 1,
       borderColor: 'black',
       borderStyle: 'solid',
+    };
+
+    let senderStyle = {
+      fontSize: 9,
     };
 
     function correctDate() {
@@ -69,30 +57,16 @@ class TheInvoice extends Component {
       return today = dd + '.' + mm + '.' + yyyy;
     }
 
-    function tulostaTuote(){
-      var tuoteTiedot = "";
-      var el = document.createElement("tr");
-      for(var key in r[r.length]){
-          tuoteTiedot = r[r.length][key];
-          var solu = document.createElement("td");
-          var teksti = document.createTextNode(tuoteTiedot);
-          solu.appendChild(teksti);
-          el.appendChild(solu);
-      }
-
-      return el;
-      console.log("helloRuby");
-
-
-    }
-
     return (
       <div>
         <table style={tableStyle} width="100%" onLoad={this.tulostaTuote}>
           <tr>
             <td colSpan='2'>
               {bundle.i}
-
+              <p style={senderStyle}>
+                {oInfo.name}, {oInfo.address}, {oInfo.zip} {oInfo.city}
+                {oInfo.bId}, {oInfo.name}, {oInfo.city}
+              </p>
             </td>
           </tr>
           <tr>

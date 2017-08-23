@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import { bundle, temp } from './App.js';
 const containerStyle = {
-   width: 600,
+   width: 800,
    height: 300,
 }
 

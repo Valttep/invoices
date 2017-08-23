@@ -1,8 +1,9 @@
-//class for new invoices
+//class for New invoices
 import React, { Component } from 'react';
 import Ci from './Ci.js';
 import Ii from './Ii.js';
 import Pi from './Pi.js';
+import Oi from './Oi.js';
 import './App.css';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
@@ -16,7 +17,7 @@ import { bundle, temp} from './App.js';
 
 
 const containerStyle = {
-   width: '50%',
+   width: '80%',
 }
 
 
@@ -40,7 +41,7 @@ class NewInvoice extends Component {
      const {stepIndex} = this.state;
      this.setState({
        stepIndex: stepIndex + 1,
-       finished: stepIndex >= 2,
+       finished: stepIndex >= 3,
      });
    };
 
@@ -49,7 +50,7 @@ class NewInvoice extends Component {
      if(stepIndex > 0){
        this.setState({
          stepIndex: stepIndex - 1,
-         finished: stepIndex >= 3,
+         finished: stepIndex > 3,
        });
      }
    };
@@ -57,10 +58,12 @@ class NewInvoice extends Component {
   getStepContent(stepIndex){
     switch (stepIndex) {
       case 0:
-        return <Ci />;
+        return <Oi />;
       case 1:
-        return <Ii />;
+        return <Ci />;
       case 2:
+        return <Ii />;
+      case 3:
         return <Pi />;
       default:
         return 'too long';
@@ -91,6 +94,9 @@ class NewInvoice extends Component {
                         <div>{this.getStepContent(stepIndex)}</div>
                         <Stepper activeStep={stepIndex}>
                           <Step style={{fontSize: temp}}>
+                            <StepLabel style={{fontSize: temp}}> {bundle.userInfo} </StepLabel>
+                          </Step>
+                          <Step style={{fontSize: temp}}>
                             <StepLabel style={{fontSize: temp}}> {bundle.ci} </StepLabel>
                           </Step>
                           <Step>
@@ -108,7 +114,7 @@ class NewInvoice extends Component {
                             style={{marginRight: 12}}
                           />
                           <RaisedButton
-                            label={stepIndex === 2 ? bundle.finish : bundle.next}
+                            label={stepIndex === 3 ? bundle.finish : bundle.next}
                             labelStyle={{fontSize: temp}}
                             primary={true}
                             onTouchTap={this.handleNext}
