@@ -1,3 +1,4 @@
+//Class for userinformation object
 export class OwnInfo {
   constructor(name, address, zip, city, country, bId, phone, email, iban, bic) {
     this.name = name;

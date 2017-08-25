@@ -62,25 +62,28 @@ class Pi extends Component {
       vat: part===3?data:this.state.vat,
     });
   }
-
+  //function that creates line objects and saves them to r-array
   addButton = () => {
-    r = this.state.rows;
-    r[index] = new Line(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
-    console.log(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
-    console.log(r[index]);
-    this.setState({
-      rows: r,
-    });
-    index++;
+    console.log(!isNaN(this.state.price)+ " " + !isNaN(this.state.quantity)+ " " +!isNaN(this.state.quantity));
+    if(!isNaN(this.state.price) && !isNaN(this.state.quantity) && !isNaN(this.state.vat)){
+      r = this.state.rows;
+      r[index] = new Line(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
+      console.log(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
+      console.log(r[index]);
+      this.setState({
+        rows: r,
+      });
+      index++;
+    } else {
+      alert(bundle.numAlert);
+    }
   }
-
   deleteSelected = () => {
     let tempRow = this.state.rows;
     let tempSel = this.state.selected;
-    console.log("ennen rows " + this.state.rows.length + " ennen tempsel " + tempSel[0] + " " + tempSel.length + " ennen index " + index + "   " + this.state.selected);
     for(var i in tempSel){
-      tempRow.splice(tempSel[i], 1);
-      console.log(tempRow.splice(tempSel[i], 1));
+      tempRow.splice(tempSel[i], tempSel[i] + 1);
+
       if(index > 0)
         index--;
     }
@@ -136,7 +139,7 @@ class Pi extends Component {
             <TableHeaderColumn style={styling}>{bundle.tablepname}</TableHeaderColumn>
             <TableHeaderColumn style={styling}>{bundle.quantity}</TableHeaderColumn>
             <TableHeaderColumn style={styling}>{bundle.price}</TableHeaderColumn>
-            <TableHeaderColumn style={styling}>{bundle.vat} %</TableHeaderColumn>
+            <TableHeaderColumn style={styling}>{bundle.vat} </TableHeaderColumn>
             <TableHeaderColumn style={styling}>{bundle.total}</TableHeaderColumn>
           </TableRow>
         </TableHeader>

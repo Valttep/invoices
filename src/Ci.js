@@ -5,7 +5,6 @@ import { bundle, temp } from './App.js';
 import { Customer } from './Customer.js';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 export let cust;
 export let eOk3 = 0;
 let probs = 0;
@@ -41,6 +40,8 @@ class Ci extends Component {
      });
    }
 
+
+
   createCustomer = () => {
     probs = 0;
     for(var k in this.state){
@@ -68,6 +69,13 @@ class Ci extends Component {
 
   }
 
+  //key bindings
+  keyDown = (event) => {
+    if(event.keyCode === 13){
+      this.createCustomer();
+    }
+  }
+
   render() {
 
     const pads = {
@@ -77,8 +85,8 @@ class Ci extends Component {
     }
 
     return (
-      <div className="Ci" style={pads}>
-        <p> {bundle.ci} </p>
+      <div className="Ci" style={pads} onKeyDown={this.keyDown}>
+        <p> {bundle.ci}</p>
         <TextField style={pads} floatingLabelText={bundle.name} value={this.state.name} onChange={(e, v) => {this.updateField(0, v);}} hintText="ex. Gravel Company" />
         <TextField style={pads} floatingLabelText={bundle.cNro} value={this.state.cNro} onChange={(e, v) => {this.updateField(1, v);}}/>
         <TextField style={pads} floatingLabelText={bundle.address} value={this.state.address} onChange={(e, v) => {this.updateField(2, v);}} hintText="Kalevantie 4" />

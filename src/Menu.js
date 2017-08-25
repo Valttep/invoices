@@ -24,7 +24,7 @@ class Menu extends Component {
 
     }
   }
-
+  //changes what the app.js is showing to user
   changeShow2 = (e) => {
     console.log("Menu CS" + e);
     this.props.changeShow(e);

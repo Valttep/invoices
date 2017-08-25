@@ -6,7 +6,6 @@ import { bundle, temp } from './App.js';
 import { InvoiceInfo } from './InvoiceInfo.js';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 export let invoiceInformation;
 
 export let eOk2 = 0;
@@ -24,6 +23,7 @@ class Ii extends Component {
         pen: "",
       }
    }
+
 
    updateField = (part, data) =>{
      this.setState({
@@ -57,6 +57,12 @@ class Ii extends Component {
    }
 
   }
+  //key bindings
+  keyDown = (event) => {
+    if(event.keyCode === 13){
+      this.createIi();
+    }
+  }
 
   render() {
 
@@ -67,7 +73,7 @@ class Ii extends Component {
     }
 
     return (
-      <div className="Ii" style={styling}>
+      <div className="Ii" style={styling} onKeyDown={this.keyDown}>
         <p> {bundle.ii} </p>
         <TextField style={styling} floatingLabelText={bundle.iNro} value={this.state.iNro} onChange={(e, v) => {this.updateField(0, v);}} />
         <DatePicker style={styling} hintText={bundle.dd} value={this.state.dd} onChange={(e, v) => {this.updateField(1, v);}} />

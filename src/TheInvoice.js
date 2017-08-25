@@ -1,4 +1,4 @@
-//111111
+//JSX for invoice. Had to use html table, to get everything to right places.
 import React, {Component} from 'react';
 import {cust} from './Ci.js';
 import {invoiceInformation} from './Ii.js';
@@ -67,6 +67,7 @@ class TheInvoice extends Component {
     return (
       <div>
         <button type="submit" onClick={() => {window.print();}}>Print this page</button>
+
         <table style={tableStyle} width="100%">
           <tr>
             <td colSpan='2'>

@@ -1,3 +1,4 @@
+//app class
 import React, { Component } from 'react';
 import NewInvoice from './NewInvoice.js';
 import Menu from './Menu.js';
@@ -116,9 +117,7 @@ class App extends Component {
 
           </AppBar>
           <Drawer open={this.state.drawerOpen}>
-            <MenuItem onTouchTap={() => {this.toggleDrawer();}} style={textStyle}> {bundle.lOut} </MenuItem>
             <MenuItem onTouchTap={() => {this.toggleDrawer(); this.setLanguage('fi')}} style={textStyle}> {bundle.language} </MenuItem>
-            <MenuItem onTouchTap={() => {this.toggleDrawer();}} style={textStyle}> {bundle.userInfo} </MenuItem>
             <MenuItem onTouchTap={() => {this.toggleDrawer();  this.toggleSetting();}} style={textStyle}> {bundle.uiSets} </MenuItem>
           </Drawer>
           {this.state.show}

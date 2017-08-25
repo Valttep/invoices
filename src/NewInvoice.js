@@ -13,10 +13,11 @@ import {
   Stepper,
   StepLabel,
 } from 'material-ui/Stepper';
-import { bundle, temp} from './App.js';
+import { bundle, temp } from './App.js';
 
 
 export let ok = false;
+
 const containerStyle = {
    width: '80%',
 }
@@ -27,9 +28,8 @@ class NewInvoice extends Component {
    constructor(props) {
       super(props);
       this.state = {
-
-         finished: false,
-         stepIndex: 0,
+        finished: false,
+        stepIndex: 0,
       }
    }
 
@@ -41,7 +41,7 @@ class NewInvoice extends Component {
    handleNext = () => {
      const {stepIndex} = this.state;
      let ok = everythingOk + eOk2 + eOk3 + eOk4;
-     if(ok == this.state.stepIndex + 1){
+     if(ok >= this.state.stepIndex + 1){
        this.setState({
          stepIndex: stepIndex + 1,
          finished: stepIndex >= 3,
@@ -53,7 +53,7 @@ class NewInvoice extends Component {
 
    handlePrev = () => {
      const {stepIndex} = this.state;
-     if(stepIndex > 0){
+     if(stepIndex > -1){
        this.setState({
          stepIndex: stepIndex - 1,
          finished: stepIndex > 3,
@@ -63,6 +63,8 @@ class NewInvoice extends Component {
 
   getStepContent(stepIndex){
     switch (stepIndex) {
+      case -1:
+        return this.changeShow2(0);
       case 0:
         return <Oi />;
       case 1:
@@ -76,6 +78,14 @@ class NewInvoice extends Component {
     }
   }
 
+  keydown = (event) => {
+    if(event.keyCode === 39){
+      this.handleNext();
+    }
+    if(event.keyCode === 37){
+      this.handlePrev();
+    }
+  }
 
 
   render() {
@@ -85,13 +95,13 @@ class NewInvoice extends Component {
 
     return (
          <div className="NewInvoice" >
-            <Paper className="container" style={containerStyle}>
+            <Paper className="container" style={containerStyle} onKeyDown={this.keyDown}>
 
                <div>
 
                  <div style={contentStyle}>
                    {finished ? (
-                      <RaisedButton label="Back to Menu"
+                      <RaisedButton label={bundle.btm}
                         onTouchTap={() => {this.changeShow2(0);}}
                       />
 
@@ -115,7 +125,7 @@ class NewInvoice extends Component {
                         <div style={{marginTop: 12}}>
                           <FlatButton
                             label={bundle.back}
-                            disabled={stepIndex === 0}
+                            disabled={false}
                             onTouchTap={this.handlePrev}
                             style={{marginRight: 12}}
                           />

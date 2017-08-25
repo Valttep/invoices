@@ -1,3 +1,4 @@
+//class for invoice information object
 export class InvoiceInfo{
   constructor(iNro, dd, ref, top, pen) {
     this.iNro = iNro;

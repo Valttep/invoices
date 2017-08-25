@@ -1,3 +1,4 @@
+//Settings Dialog, where user can adjust uicolor and font size.
 import React, { Component } from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
@@ -48,27 +49,26 @@ class SettingsDialog extends Component{
           onRequestClose={this.handleClose}
         >
           <div>
-          <p>
-          {bundle.uiColor}<br />
-          <img src="blue.png" alt="blue" onTouchTap={() => {this.uiColor('#3F48CC');}} />
-          <img src="default.png" alt="green, default" onTouchTap={() => {this.uiColor('#25BC8A');}} />
-          <img src="red.png" alt="red" onTouchTap={() => {this.uiColor('#88001B');}} />
-          </p>
-          <br />
-          <p style={{Align:'middle'}}>
-          {bundle.uiFont}
-          <div style={{padding: 5,}}>
-            <RadioButtonGroup name="size" defaultChecked={this.state.fSize} onChange={this.setSize}>
-              <RadioButton value="12" label="12 points" />
-              <RadioButton value="15" label="15 points" />
-              <RadioButton value="20" label="20 points" />
-            </RadioButtonGroup>
 
+            <div style={{padding: 10}}>
+              {bundle.uiColor}<br />
+              <img src="blue.png" alt="blue" onTouchTap={() => {this.uiColor('#3F48CC');}} />
+              <img src="default.png" alt="green, default" onTouchTap={() => {this.uiColor('#25BC8A');}} />
+              <img src="red.png" alt="red" onTouchTap={() => {this.uiColor('#88001B');}} />
+            </div>
 
+            <br />
 
+            <div style={{padding: 10,}}>
+              {bundle.uiFont}
+              <RadioButtonGroup name="size" defaultChecked={this.state.fSize} onChange={this.setSize}>
+                <RadioButton value="12" label="12 points" />
+                <RadioButton value="15" label="15 points" />
+                <RadioButton value="20" label="20 points" />
+              </RadioButtonGroup>
+            </div>
           </div>
-        </p>
-      </div>
+
         </Dialog>
     );
   }

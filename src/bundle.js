@@ -47,6 +47,8 @@ const BUNDLE = {
     tablepname: "Name",
     total: "In Total",
     product: "Product",
+    numAlert: "Give number value.",
+    invoiceAlert: "Open the Invoice.",
     //navigation
     next: "Next",
     finish: "Finish",
@@ -77,14 +79,14 @@ const BUNDLE = {
     browse: "Selaa Laskuja",
     editC: "Muokkaa Asiakkaita",
     //User Information
-    userInfo: "Your Information",
+    userInfo: "Tietonne",
     iban: "Tilinumero IBAN",
     bic: "BIC",
     //customer Information
     ci: "Asiakastiedot",
     name: "Nimi",
     cNro: "Asiakas Nro.",
-    Address: "Katuosoite",
+    address: "Katuosoite",
     zip: "Postinumero",
     city: "Kaupunki",
     country: "maa",
@@ -112,6 +114,8 @@ const BUNDLE = {
     tablepname: "Nimi",
     total: "Yhteensä",
     product: "Tuotteet",
+    numAlert: "Anna numeroarvo.",
+    invoiceAlert: "Avaa Lasku ennen poistumista.",
     //navigation
     next: "Seuraava",
     finish: "Lopeta",
@@ -121,7 +125,7 @@ const BUNDLE = {
     addC: "Lisää Asiakas",
     addIi: "Lisää Tiedot",
     openI: "Avaa lasku uuteen ikkunaan",
-    saveI: "Save Your Information",
+    saveI: "Tallenna tietosi",
     alert: "Et antanut kaikkia arvoja.",
     alert2: "Tarkista kentät.",
     //SettingsDialog

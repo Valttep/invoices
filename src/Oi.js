@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField';
 import { bundle, temp } from './App.js';
 import { OwnInfo } from './OwnInfo.js';
 import RaisedButton from 'material-ui/RaisedButton';
-
 export let oInfo;
 export let everythingOk = 0;
 let probs = 0;
@@ -40,6 +39,7 @@ class Oi extends Component {
        phone: part===8?data:this.state.phone,
        email: part===9?data:this.state.email,
      });
+     console.log(this.state.his);
    }
 
    addInfo = () => {
@@ -70,6 +70,12 @@ class Oi extends Component {
        alert(bundle.alert);
      }
    }
+   //key bindings
+   keyDown = (event) => {
+     if(event.keyCode === 13){
+       this.addInfo();
+     }
+   }
 
   render() {
 
@@ -80,7 +86,7 @@ class Oi extends Component {
     }
 
     return (
-      <div className="Ci" style={pads}>
+      <div className="Ci" style={pads} onKeyDown={this.keyDown}>
         <p> {bundle.userInfo} </p>
         <TextField style={pads} floatingLabelText={bundle.name} value={this.state.name} onChange={(e, v) => {this.updateField(0, v);}} hintText="ex. Gravel Company" />
         <TextField style={pads} floatingLabelText={bundle.address} value={this.state.address} onChange={(e, v) => {this.updateField(1, v);}} hintText="Kalevantie 4" />
