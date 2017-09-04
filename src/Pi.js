@@ -82,7 +82,7 @@ class Pi extends Component {
     let tempRow = this.state.rows;
     let tempSel = this.state.selected;
     for(var i in tempSel){
-      tempRow.splice(tempSel[i], tempSel[i] + 1);
+      tempRow.splice(0, tempSel[i]);
 
       if(index > 0)
         index--;
