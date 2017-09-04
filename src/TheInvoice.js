@@ -1,4 +1,4 @@
-//JSX for invoice. Had to use html table, to get everything to right places.
+
 import React, {Component} from 'react';
 import {cust} from './Ci.js';
 import {invoiceInformation} from './Ii.js';

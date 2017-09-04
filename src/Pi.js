@@ -67,7 +67,12 @@ class Pi extends Component {
     console.log(!isNaN(this.state.price)+ " " + !isNaN(this.state.quantity)+ " " +!isNaN(this.state.quantity));
     if(!isNaN(this.state.price) && !isNaN(this.state.quantity) && !isNaN(this.state.vat)){
       r = this.state.rows;
-      r[index] = new Line(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
+      r[index] = new Line(
+        this.state.prodName,
+        this.state.quantity,
+        this.state.price,
+        this.state.vat
+      );
       console.log(this.state.prodName, this.state.quantity, this.state.price, this.state.vat);
       console.log(r[index]);
       this.setState({
