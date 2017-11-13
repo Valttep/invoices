@@ -1,7 +1,17 @@
+->>>Unfinished <<<-
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+## Shortcut for running:<br>
+  git clone https://github.com/Valttep/invoices.git<br>
+  npm install<br>
+  npm start<br><br>
+  
+## If you're having a problem with tap-event-plugin, try to install the most recent version:<br>
+  npm i --save react-tap-event-plugin@2.0.1<br>
 
 ## Table of Contents
 
